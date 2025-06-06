@@ -33,21 +33,20 @@ IDE Used: Eclipse
 selenium-pom-testng/
 ├── src
 │   ├── main
-│   │   └── java
-│   │       └── com.qa
-│   │           ├── base
-│   │           │   └── BaseTest.java
-│   │           ├── listeners
-│   │           │   └── TestListener.java
-│   │           ├── pages
-│   │           │   ├── LoginPage.java
-│   │           │   └── DashboardPage.java
-│   │           └── utils
-│   │               ├── ConfigReader.java
-│   │               ├── ElementUtil.java
-│   │               ├── ExcelUtil.java
-│   │               └── ScreenshotUtils.java
-│   ├── main
+│   │   ├── java
+│   │   │   └── com.qa
+│   │   │       ├── base
+│   │   │       │   └── BaseTest.java
+│   │   │       ├── listeners
+│   │   │       │   └── TestListener.java
+│   │   │       ├── pages
+│   │   │       │   ├── LoginPage.java
+│   │   │       │   └── DashboardPage.java
+│   │   │       └── utils
+│   │   │           ├── ConfigReader.java
+│   │   │           ├── ElementUtil.java
+│   │   │           ├── ExcelUtil.java
+│   │   │           └── ScreenshotUtils.java
 │   │   └── resources
 │   │       └── config.properties
 │   └── test
@@ -59,7 +58,6 @@ selenium-pom-testng/
 ├── testng.xml
 ├── pom.xml
 └── .gitignore
-
 
 
 
