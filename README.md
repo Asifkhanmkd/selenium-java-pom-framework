@@ -1,114 +1,105 @@
-Selenium POM TestNG Framework
+ Selenium Java POM TestNG Framework
 
-Project Overview
+ Overview
 
-This is a structured Selenium Test Automation Framework using:
-
-Selenium WebDriver:  For browser automation
-TestNG:              For test orchestration
-Page Object Model:   For maintainable test code
-Maven:               As the build tool
-
-Other utilities integrated:
-
-Screenshot capture on test failure
-Config.properties file to externalize configuration and test data
-ElementUtil for clean interaction logic
+This is a scalable, modular, and multi-threaded Selenium Test Automation Framework designed for real-world testing needs. It follows best practices like the Page Object Model (POM), centralized WebDriver management with ThreadLocal, and real-time reporting with ExtentReports.
 
 
 
 Tech Stack
 
-Language: Java 17+
-Build Tool: Maven
-Framework: TestNG
-Browser Driver Management: WebDriverManager
-Design Pattern: Page Object Model (POM)
-IDE Used: Eclipse
+| Tool                | Purpose                         |
+|---------------------|----------------------------------|
+| Java 17+            | Programming Language             |
+| Maven               | Build and Dependency Management  |
+| TestNG              | Test Execution Framework         |
+| Selenium WebDriver  | Browser Automation               |
+| WebDriverManager    | Driver Binary Management         |
+| ExtentReports       | Test Reporting                   |
+| Apache POI          | Excel Reading (Data-Driven)      |           
 
 
- Project Structure
+
+Project Structure
 
 
-selenium-pom-testng/
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com.qa
-│   │   │       ├── base
-│   │   │       │   └── BaseTest.java
-│   │   │       ├── listeners
+selenium-java-pom-framework/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com.qa/
+│   │   │       ├── base/
+│   │   │       │   ├── BaseTest.java
+│   │   │       │   └── DriverFactory.java
+│   │   │       ├── listeners/
 │   │   │       │   └── TestListener.java
-│   │   │       ├── pages
+│   │   │       ├── pages/
 │   │   │       │   ├── LoginPage.java
-│   │   │       │   └── DashboardPage.java
-│   │   │       └── utils
-│   │   │           ├── ConfigReader.java
-│   │   │           ├── ElementUtil.java
-│   │   │           ├── ExcelUtil.java
-│   │   │           └── ScreenshotUtils.java
-│   │   └── resources
+│   │   │       │   ├── AdminPage.java
+│   │   │       │   └── PIMPage.java
+│   │   │       ├── utils/
+│   │   │       │   ├── ConfigReader.java
+│   │   │       │   ├── Constants.java
+│   │   │       │   ├── ElementUtil.java
+│   │   │       │   ├── WaitUtils.java
+│   │   │       │   ├── ExcelReader.java
+│   │   │       │   └── ScreenshotUtils.java
+│   │   │       │   
+│   │   └── resources/
 │   │       └── config.properties
-│   └── test
-│       └── java
-│           └── com.qa.tests
-│               └── LoginTest.java
-├── screenshots/
-│   └── (Saved screenshots on failure)
-├── testng.xml
+│   └── test/
+│       └── java/
+│           └── com.qa.tests/
+│               ├── LoginTest.java
+│               ├── AdminPageTest.java
+│               └── e2e/
+│                   └── PIMPageTest.java
+├── test-output/           # TestNG default reports (gitignored)
+├── Reports/               # ExtentReport output (gitignored)
+├── screenshots/           # Captures on failure (auto-named)
 ├── pom.xml
+├── testng.xml
 └── .gitignore
 
+Key Features
 
+- Page Object Model (POM) for maintainability
 
- How to Run
+- ThreadLocal WebDriver via DriverFactory for thread-safe parallel execution
 
-1. Prerequisites
-   JDK 17+
-   Maven installed
-   Chrome browser
+- Externalized config using config.properties
 
-2. Run from Terminal
+- Screenshot on failure via TestListener
 
---bash--
+- ExtentReports integration with dynamic test names
+
+- Excel-driven data via ExcelReader
+
+- Group/tag execution support with TestNG groups (planned)
+
+- Multi-threaded support with @DataProvider(parallel = true)
+
+How to Run:
+Prerequisites
+JDK 17+
+Maven installed
+Chrome browser
+
+From Terminal:
 mvn clean test
 
+From Eclipse/IDE:-
+Right-click testng.xml → Run As → TestNG Suite
 
-3. Run from Eclipse
+Screenshot on Failure:-
 
-Right click on testng.xml > Run As > TestNG Suite
+All failures automatically captured via TestListener
+Saved in /screenshots with test method name and timestamp
 
-
- Features
-
-POM-based clean structure
-config.properties for credentials and URLs
-Common utilities: click, sendKeys, wait, Element Assertions
-Screenshot on failure (via TestNG Listener)
-Separate tests for valid and invalid login
-
----
-
-Screenshot on Failure
-
-Captured in screenshots folder using listener class TestListener.
-
-
-
-TestNG Groups (Upcoming)
-
-Will be added to allow tagging of tests like smoke, regression etc.
-
-
+Reporting:-
+Rich HTML reports under /Reports folder
+Includes pass/fail logs, screenshots, timestamps
 
 Author
-
 Muhammad Asif
-Role: Software QA 
-
-
-
-Next Steps
-
-* [x] Complete Level 1 (DONE)
-* [ ] Start Level 2: PageFactory + Data-Driven
+Role: Software QA Engineer
