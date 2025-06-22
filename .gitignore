@@ -10,3 +10,5 @@ build/
 out/
 *.xlsx
 *.png
+test-output/
+Reports/
