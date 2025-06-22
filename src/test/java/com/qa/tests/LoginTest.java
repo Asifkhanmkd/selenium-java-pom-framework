@@ -13,7 +13,7 @@ public class LoginTest extends BaseTest {
 	
 	
 	
-	@Test(priority=1)
+	@Test(groups= {"e2e"},priority=1)
 	public void loginTest() {
 		
 		LoginPage loginPage= new LoginPage(driver);	

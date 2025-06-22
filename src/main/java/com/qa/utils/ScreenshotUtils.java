@@ -14,8 +14,13 @@ public class ScreenshotUtils {
 	
 	public static String captureScreenshot(WebDriver driver, String testName) {
 		
+		//System.out.println("Driver is: " + driver);
+	    //System.out.println("Capturing screenshot for: " + testName);
+		
 		String timestamp= new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		String screenshotPath="./screenshots/" +testName+ "_" +timestamp+ ".png";
+		String fileName=testName+ "_" +timestamp+ ".png";
+		
+		String screenshotPath=Constants.SCREENSHOT_FOLDER +fileName;
 		
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		
@@ -29,7 +34,9 @@ public class ScreenshotUtils {
 			e.printStackTrace();
 		}
 				
-		return screenshotPath;
+		//return screenshotPath;
+		
+		return "screenshots/" + fileName;
 	}
 
 }

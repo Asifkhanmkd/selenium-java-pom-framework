@@ -7,6 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementUtil {
@@ -19,27 +20,37 @@ public class ElementUtil {
 
 	}
 
-	public WebElement getElement(By locator) {
+	public WebElement getElementWhenVisible(By locator) {
 
 		return waitforElementVisibility(locator, 10);
+	}
+	
+	
+	public WebElement getElementWhenClickable(By locator) {
+
+		return waitforElementClickability(locator, 10);
 	}
 
 	public void doSendKeys(By locator, String value) {
 
-		getElement(locator).sendKeys(value);
+		getElementWhenVisible(locator).sendKeys(value);
 	}
 
 	public void doClick(By locator) {
 
-		getElement(locator).click();
+		getElementWhenVisible(locator).click();
 
 	}
+	
+	public String getText(By locator) {
+		return getElementWhenVisible(locator).getText();
+    }
 
 	public boolean isElementExist(By locator) {
 
 		try {
 
-			return getElement(locator).isDisplayed();
+			return getElementWhenVisible(locator).isDisplayed();
 
 		} catch (NoSuchElementException e) {
 
@@ -54,5 +65,62 @@ public class ElementUtil {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
+	
+	public WebElement waitforElementClickability(By locator, int timeout) {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+	    return wait.until(ExpectedConditions.elementToBeClickable(locator));
+	
+	}
+	// Overloaded methods to accept WebElements from PageClasses using PageFactory approach
+	
+	public WebElement getElementWhenVisible(WebElement element) {
+
+		return waitforElementVisibility(element, 10);
+	}
+
+	public void doSendKeys(WebElement element, String value) {
+
+		getElementWhenVisible(element).sendKeys(value);
+	}
+
+	public void doClick(WebElement element) {
+
+		getElementWhenVisible(element).click();
+
+	}
+	
+	public String getText(WebElement element) {
+		return getElementWhenVisible(element).getText();
+    }
+
+	public boolean isElementExist(WebElement element) {
+
+		try {
+
+			return getElementWhenVisible(element).isDisplayed();
+
+		} catch (NoSuchElementException e) {
+
+			return false;
+
+		}
+
+	}
+
+	public WebElement waitforElementVisibility(WebElement element, int timeOut) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		return wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	
+	
+	
+	public WebElement waitforElementClickability(WebElement element, int timeout) {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+	    return wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	
 
 }

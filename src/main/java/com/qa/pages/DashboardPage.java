@@ -2,30 +2,28 @@ package com.qa.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.qa.utils.ElementUtil;
 
-public class DashboardPage {
-
-	private  WebDriver driver;
-	private  ElementUtil elementUtil;
-	
-	
-	public By my_ActionElement= By.cssSelector("h6.oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module");
+public class DashboardPage extends BasePage {
 
 	public DashboardPage(WebDriver driver) {
-
-		this.driver = driver;
-		this.elementUtil = new ElementUtil(driver);
-
-	}
 	
-	public boolean  IsTheDashboardHeaderVisiblen() {
-		
-		return elementUtil.isElementExist(my_ActionElement);
-		
-		
+	super(driver);
+	
+	}
+
+	@FindBy(css = "h6.oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module")
+	WebElement DashboardHeader;
+
+	public boolean IsTheDashboardHeaderVisiblen() {
+
+		return elementUtil.isElementExist(DashboardHeader);
+
 	}
 
 }
