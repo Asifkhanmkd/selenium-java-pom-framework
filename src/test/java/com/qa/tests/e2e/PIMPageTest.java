@@ -10,6 +10,7 @@ import com.qa.base.BaseTest;
 import com.qa.pages.LeftMenuPage;
 import com.qa.pages.LoginPage;
 import com.qa.pages.PIMPage;
+import com.qa.utils.ConfigReader;
 import com.qa.utils.DataProviderUtil;
 import com.qa.utils.ExcelReader;
 
@@ -23,7 +24,9 @@ public class PIMPageTest extends BaseTest {
 
 		//System.out.println("Driver initialized?   " + driver);
 
-		loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+		//loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+		
+		loginPage.doLogin(ConfigReader.get("username"), ConfigReader.get("password"));
 
 		PIMPage pimPage = leftMenuPage.goToPIM();
 		pimPage.clickOnAddbtn();

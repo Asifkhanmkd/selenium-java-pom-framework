@@ -25,7 +25,7 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.10.0</version>
-			<scope>test</scope>
+			
 		</dependency>
 
 		<!-- WebDriverManager for driver setup -->
@@ -90,6 +90,22 @@
 				<configuration>
 					<source>11</source>
 					<target>11</target>
+				</configuration>
+			</plugin>
+
+			<!--Surefire plugin to run TestNG test cases via testng.xml -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>TryCatch.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<systemPropertyVariables>
+						<env>${env}</env> <!-- allows -Denv=qa to reach your Java code -->
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>

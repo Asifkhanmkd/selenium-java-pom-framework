@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import com.qa.base.BaseTest;
 import com.qa.pages.DashboardPage;
 import com.qa.pages.LoginPage;
+import com.qa.utils.ConfigReader;
 
 
 public class LoginTest extends BaseTest {
@@ -20,8 +21,8 @@ public class LoginTest extends BaseTest {
 		
 		//driver.navigate().to("https://opensource-demo.orangehrmlive.com/");
 		
-		String uname=prop.getProperty("username");
-		String pass=prop.getProperty("password");
+		String uname=ConfigReader.get("username");
+		String pass=ConfigReader.get("password"); 
 		
 		DashboardPage dashboardPage =loginPage.doLogin(uname, pass);
 		

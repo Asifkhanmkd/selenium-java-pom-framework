@@ -2,7 +2,7 @@ package com.qa.utils;
 
 public class Constants {
 	
-	public static final String CONFIG_PROPERTIES_PATH="./src/main/resources/config.properties";
+	public static final String CONFIG_PROPERTIES_PATH="./src/main/resources/cofig/config.properties";
     public static final String EXCEL_TESTDATA_FILE_PATH="C:\\Users\\Muhammad\\Downloads\\Job-Ready\\selenium-pom-testng\\src\\test\\resources\\testData\\testData.xlsx";
     public static final String EXCEL_SHEET_EMPLOYEE="employeeData";
     public static final int DEFAULT_TIMEOUT=5;
