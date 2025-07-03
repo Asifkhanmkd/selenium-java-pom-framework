@@ -1,9 +1,10 @@
 package com.qa.base;
 import java.time.LocalDateTime;
-import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
 import com.qa.driver.DriverFactory;
 import com.qa.utils.ConfigReader;
 
@@ -18,7 +19,7 @@ public class BaseTest {
 		
 		ConfigReader.initProp();
 		
-		String browser=ConfigReader.get("browser"); 
+		
 		String url= ConfigReader.get("url");
 		
 		DriverFactory df = new DriverFactory();
@@ -28,6 +29,13 @@ public class BaseTest {
 
 		//String browser = prop.getProperty("browser");
 		//String url = prop.getProperty("url");
+		
+	     String browser= System.getProperty("browser");
+	     if(browser==null) {
+	    	 browser=ConfigReader.get("browser");	 
+	    	 
+	     }
+		
 
 		driver = df.initDriver(browser);
 		driver.manage().window().maximize();
@@ -39,7 +47,7 @@ public class BaseTest {
 
 	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
-
+		System.out.println(">>> Running tearDown() for driver: " + driver);
 		if (driver != null) {
 
 			driver.quit();

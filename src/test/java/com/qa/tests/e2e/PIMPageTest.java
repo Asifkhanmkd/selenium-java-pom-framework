@@ -3,7 +3,6 @@ package com.qa.tests.e2e;
 import java.util.Hashtable;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qa.base.BaseTest;
@@ -12,7 +11,6 @@ import com.qa.pages.LoginPage;
 import com.qa.pages.PIMPage;
 import com.qa.utils.ConfigReader;
 import com.qa.utils.DataProviderUtil;
-import com.qa.utils.ExcelReader;
 
 public class PIMPageTest extends BaseTest {
 

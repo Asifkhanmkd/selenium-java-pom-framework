@@ -18,7 +18,8 @@ public class ScreenshotUtils {
 		// System.out.println("Capturing screenshot for: " + testName);
 
 		String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		String fileName = testName + "_" + timestamp + ".png";
+		String fileName = (testName + "_" + timestamp + ".png").replaceAll("[^.a-zA-Z0-9]", "_");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+ fileName);
 
 		String screenshotPath = Constants.SCREENSHOT_FOLDER + fileName;
 

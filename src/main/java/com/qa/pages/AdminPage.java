@@ -1,13 +1,11 @@
 package com.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import com.qa.utils.ElementUtil;
 
 public class AdminPage extends BasePage {
 
@@ -34,11 +32,16 @@ public class AdminPage extends BasePage {
 	@FindBy(xpath = "//input[@placeholder='Type for hints...']")
 	WebElement empNameField;
 
-	@FindBy(xpath = "//div[@role='listbox']//span[text()='Ravi M B']")
-	WebElement empFullName;
-	
-	//@FindBy(xpath = "//span[normalize-space()='Ravi M B']")
+	//@FindBy(xpath = "//div[@role='listbox']//span[text()='Ravi M B']")
 	//WebElement empFullName;
+	
+	// Use FindElelement method to get the Employee name dynamically
+	
+	public WebElement getEmpFullName(String fullName) {
+	    String xpath = "//div[@role='listbox']//span[text()='" + fullName + "']";
+	    return driver.findElement(By.xpath(xpath));
+	}
+	
 
 	
 	@FindBy(xpath = "//div[@class='oxd-grid-2 orangehrm-full-width-grid']/div[4]/div/div[2]/input")
@@ -88,7 +91,7 @@ public class AdminPage extends BasePage {
 	public void typeEmployeeName(String empName) {
 		elementUtil.doSendKeys(empNameField, empName);
 		
-		elementUtil.doClick(empFullName);
+		elementUtil.doClick(getEmpFullName(empName));
 		
 		System.out.println("Employee name clicked.....................");
 		

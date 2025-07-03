@@ -4,10 +4,11 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementUtil {
@@ -93,7 +94,7 @@ public class ElementUtil {
 		return getElementWhenVisible(element).getText();
     }
 
-	public boolean isElementExist(WebElement element) {
+	/*public boolean isElementExist(WebElement element) {
 
 		try {
 
@@ -105,8 +106,20 @@ public class ElementUtil {
 
 		}
 
+		}*/
+	
+	public boolean isElementExist(WebElement element) {
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	        wait.until(ExpectedConditions.visibilityOf(element));
+	        return element.isDisplayed();
+	    } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException e) {
+	        return false;
+	    }
 	}
 
+	
+	
 	public WebElement waitforElementVisibility(WebElement element, int timeOut) {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));

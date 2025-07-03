@@ -31,15 +31,26 @@ public class LoginTest extends BaseTest {
         
 	}
 	
-	@Test(priority=2)
+	
+	
+	@Test (priority=1)
 	public void invalidLoginTest() {
+		
+		System.out.println("============================ Running invalidLoginTest attempt ===");
+	    
 		LoginPage loginPage=new LoginPage(driver);
 		
 		//loginPage.doLogin("invaliduser", "InvalidPass");
 		
 		loginPage.doLogin("Admin", "admin123");
+		boolean exists = loginPage.doesEleExist();
 		
-		Assert.assertTrue(loginPage.isErrorMsgDisplayed(), "Error message not displayed — negative login test failed");
+		System.out.println("****************************************Element exists? " + exists);
+         
+		 Assert.assertTrue(exists, "Error message not displayed — negative login test failed");
+		
+		
+		
 	}
 
 }

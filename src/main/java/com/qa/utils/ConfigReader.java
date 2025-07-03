@@ -12,6 +12,15 @@ public class ConfigReader {
 	public static void initProp() {
 		
 		String env= System.getProperty("env","qa");
+		
+		if (env == null || env.isEmpty()) {
+			//env = ConfigReader.get("env"); // fallback
+			env="qa";
+			
+			
+		}
+		
+		
 		String filePath= "config/config-" + env + ".properties"; 
 	
 		

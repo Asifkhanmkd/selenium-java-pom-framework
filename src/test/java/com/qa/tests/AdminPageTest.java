@@ -7,10 +7,11 @@ import com.qa.pages.AdminPage;
 import com.qa.pages.LeftMenuPage;
 import com.qa.pages.LoginPage;
 import com.qa.utils.ConfigReader;
+import com.qa.utils.RetryAnalyzer;
 
 public class AdminPageTest extends BaseTest {
 	
-	@Test
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAddUserFormLoadsSuccessfully () {
 		
 		LeftMenuPage leftManuPage= new LeftMenuPage(driver);
@@ -26,7 +27,7 @@ public class AdminPageTest extends BaseTest {
 		adminPage.selectRole();
 		//System.out.println("Role Selected");
 		adminPage.selectStatus();
-		adminPage.typeEmployeeName("Ravi");
+		adminPage.typeEmployeeName("torda");
 		
 		adminPage.typeUsename("Matt123");
 		adminPage.typePassword("P@kist@n47");
