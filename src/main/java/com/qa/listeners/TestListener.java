@@ -48,6 +48,9 @@ public class TestListener implements ITestListener {
 	        test.pass("✅ Test passed on first attempt");
 	    }
 
+	    System.out.println("✅ PASSED: " + testName);
+
+    
 	}	
 
 
@@ -61,6 +64,9 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
+		
+
+
 
 	}
 
@@ -103,11 +109,17 @@ WebDriver driver = DriverFactory.getDriver();
 			// + e.getMessage());
 
 		}
+		System.out.println("❌ FAILED: " + testName);
+
 
 	}
+	
 
 	public void onFinish(ITestContext context) {
 		ExtentReportManager.flushReport();
+		System.out.println("🎯 Test run completed: " + context.getPassedTests().size() + " passed, " +
+                context.getFailedTests().size() + " failed, " +
+                context.getSkippedTests().size() + " skipped.");
 	}
 	
 	
