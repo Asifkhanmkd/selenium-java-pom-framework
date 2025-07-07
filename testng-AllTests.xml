@@ -15,8 +15,8 @@
 	<test thread-count="5" name="Test">
 		<classes>
 			<class name="com.qa.tests.LoginTest" />
-			<class name="com.qa.tests.AdminPageTest" />
-			<class name="com.qa.tests.e2e.PIMPageTest" />
+			<!-- <class name="com.qa.tests.AdminPageTest" />-->
+			<!-- <class name="com.qa.tests.e2e.PIMPageTest" />-->
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

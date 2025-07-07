@@ -24,8 +24,16 @@ public class DriverFactory {
 			ChromeOptions cOption = new ChromeOptions();
 
 			if (System.getenv("CI") != null) {
+
+				System.out.println("CI detected — running Chrome in headless mode.");
+
 				cOption.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080");
+			} else {
+				System.out.println("Running Chrome in normal (non-headless) mode.");
 			}
+
+			System.out.println("Chrome options: " + cOption.toJson());
+
 			tdriver.set(new ChromeDriver(cOption));
 
 			break;
@@ -47,11 +55,10 @@ public class DriverFactory {
 		case "edge":
 
 			WebDriverManager.edgedriver().setup();
-			EdgeOptions eOption= new EdgeOptions();
-			
-			if(System.getenv("CI")!=null) {
-				eOption.addArguments("--headless=new","--disable-gpu","--window-size=1920,1080")
-				;
+			EdgeOptions eOption = new EdgeOptions();
+
+			if (System.getenv("CI") != null) {
+				eOption.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080");
 			}
 			tdriver.set(new EdgeDriver(eOption));
 
