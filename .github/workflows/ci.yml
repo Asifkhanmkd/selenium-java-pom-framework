@@ -32,7 +32,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Run Selenium tests
-        run: mvn clean test -Denv=qa
+        run: mvn -B -ntp clean test -Denv=qa
 
       - name: Upload ExtentReport
         if: always()
