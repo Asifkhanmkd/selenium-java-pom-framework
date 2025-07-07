@@ -41,7 +41,4 @@ jobs:
           name: ExtentReport-${{ github.run_id }}
           path: Reports/
 
-      - name: Debug: List contents of Reports/
-        run: ls -R Reports/
-      
-
+    
