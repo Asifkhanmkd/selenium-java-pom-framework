@@ -40,7 +40,7 @@ public class DriverFactory {
 				fOption.addArguments("--headless");
 			}
 
-			tdriver.set(new FirefoxDriver());
+			tdriver.set(new FirefoxDriver(fOption));
 
 			break;
 
@@ -53,7 +53,7 @@ public class DriverFactory {
 				eOption.addArguments("--headless=new","--disable-gpu","--window-size=1920,1080")
 				;
 			}
-			tdriver.set(new EdgeDriver());
+			tdriver.set(new EdgeDriver(eOption));
 
 			break;
 
