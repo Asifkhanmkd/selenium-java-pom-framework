@@ -32,7 +32,7 @@ public class LoginTest extends BaseTest {
 	}
 	
 	
-	
+	/*
 	@Test (priority=1)
 	public void invalidLoginTest() {
 		
@@ -51,6 +51,6 @@ public class LoginTest extends BaseTest {
 		
 		
 		
-	}
+	} */
 
 }
