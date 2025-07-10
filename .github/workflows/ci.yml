@@ -42,10 +42,12 @@ jobs:
           path: Reports/
           
       - name: Show contents of Reports before zip
+        if: always()
         run: ls -R Reports/
 
      
       - name: Zipped TimeStamped ExtentReport
+        if: always()
         run: |
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           ZIP_FNAME=ExtentReport_$TIMESTAMP.zip
@@ -53,9 +55,11 @@ jobs:
           echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
           
       - name: Inspect ZIP
+        if: always()
         run: unzip -l $ZIP_FNAME
         
       - name: Zipped file uploading
+        if: always()
         uses: actions/upload-artifact@v4
         with: 
           name: ${{env.ZIP_FNAME}}
