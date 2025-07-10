@@ -40,9 +40,27 @@ jobs:
         with:
           name: ExtentReport-${{ github.run_id }}
           path: Reports/
+          
+      - name: Show contents of Reports before zip
+           run: ls -R Reports/
 
      
-      
+      - name: Zipped TimeStamped ExtentReport
+         run: |
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          ZIP_FNAME=ExtentReport_$TIMESTAMP.zip
+          zip -r $ZIP_FNAME Reports/
+          echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
+          
+      - name: Inspect ZIP
+         run: unzip -l $ZIP_FNAME
+        
+      - name: Zipped file uploading
+        uses: actions/upload-artifact@v4
+        with: 
+          name: ${{env.ZIP_FNAME}}
+          path: ${{env.ZIP_FNAME}}
+  
       
       
       
