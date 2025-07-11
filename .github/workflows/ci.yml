@@ -51,7 +51,7 @@ jobs:
         run: |
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           ZIP_FNAME=ExtentReport_$TIMESTAMP
-          zip -r $ZIP_FNAME Reports/
+          zip -r "$ZIP_FNAME.zip" Reports/
           echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
           
       - name: Inspect ZIP
