@@ -50,7 +50,7 @@ jobs:
         if: always()
         run: |
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-          ZIP_FNAME=ExtentReport_$TIMESTAMP.zip
+          ZIP_FNAME=ExtentReport_$TIMESTAMP
           zip -r $ZIP_FNAME Reports/
           echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
           
