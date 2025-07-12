@@ -51,7 +51,7 @@ jobs:
         run: |
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           ZIP_BASE="ExtentReport_$TIMESTAMP"
-          ZIP_NAME="${ZIP_BASE}.zip"
+          ZIP_FNAME="${ZIP_BASE}.zip"
           zip -r "$ZIP_FNAME" Reports/
           echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
           
