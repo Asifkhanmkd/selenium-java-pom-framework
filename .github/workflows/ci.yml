@@ -34,16 +34,7 @@ jobs:
       - name: Run Selenium tests
         run: mvn -B -ntp clean test -Denv=qa
 
-      - name: Upload ExtentReport
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ExtentReport-${{ github.run_id }}
-          path: Reports/
-          
-      - name: Show contents of Reports before zip
-        if: always()
-        run: ls -R Reports/
+      
 
      
       - name: Zipped TimeStamped ExtentReport
@@ -51,7 +42,7 @@ jobs:
         run: |
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           ZIP_BASE="ExtentReport_$TIMESTAMP"
-          ZIP_FNAME="${ZIP_BASE}"
+          ZIP_FNAME="${ZIP_BASE}.zip"
           zip -r "$ZIP_FNAME" Reports/
           echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
           
@@ -65,6 +56,14 @@ jobs:
         with: 
           name: ${{env.ZIP_FNAME}}
           path: ${{env.ZIP_FNAME}}
+          
+     - name: Deploy to GitHub Pages
+       if: always()
+       uses: peaceiris/actions-gh-pages@v3
+       with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       publish_dir: Reports/
+       publish_branch: gh-pages
   
       
       
