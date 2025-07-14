@@ -1,13 +1,13 @@
 name: Selenium CI with Maven
 
- on:
-   push:
-     branches: [ master ]
-   pull_request:
-     branches: [ master ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
- jobs:
-   test:
+jobs:
+  test:
     runs-on: ubuntu-latest
 
     env:
@@ -34,9 +34,6 @@ name: Selenium CI with Maven
       - name: Run Selenium tests
         run: mvn -B -ntp clean test -Denv=qa
 
-      
-
-     
       - name: Zipped TimeStamped ExtentReport
         if: always()
         run: |
@@ -45,31 +42,24 @@ name: Selenium CI with Maven
           ZIP_FNAME="${ZIP_BASE}.zip"
           zip -r "$ZIP_FNAME" Reports/
           echo "ZIP_FNAME=$ZIP_FNAME" >> $GITHUB_ENV
-          
+
       - name: Inspect ZIPs
         if: always()
         run: unzip -l $ZIP_FNAME
-        
+        env:
+          ZIP_FNAME: ${{ env.ZIP_FNAME }}
+
       - name: Zipped file uploading
         if: always()
         uses: actions/upload-artifact@v4
-        with: 
-          name: ${{env.ZIP_FNAME}}
-          path: ${{env.ZIP_FNAME}}
-          
-     - name: Deploy to GitHub Pages
-       if: always()
-       uses: peaceiris/actions-gh-pages@v3
-       with:
-       github_token: ${{ secrets.GITHUB_TOKEN }}
-       publish_dir: Reports/
-       publish_branch: gh-pages
-  
-      
-      
-      
-       
-        
-        
-        
-        
+        with:
+          name: ${{ env.ZIP_FNAME }}
+          path: ${{ env.ZIP_FNAME }}
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Reports/
+          publish_branch: gh-pages
