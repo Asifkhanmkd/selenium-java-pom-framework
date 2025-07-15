@@ -55,7 +55,31 @@ jobs:
         with:
           name: ${{ env.ZIP_FNAME }}
           path: ${{ env.ZIP_FNAME }}
+          
+          
+      - name: Inspect Current Directory
+        run: |
+          echo "📁 Current Directory:"
+          pwd
+          echo ""
+          echo "📂 Top-level Files:"
+          ls -al
+          
+          
+      - name: Inspect Contents of Reports/
+        if: always()
+        run: |
+          echo "📄 Reports/ Contents:"
+          ls -al Reports/
+    
+     
+      - name: Inspect Screenshots Folder
+        if: always()
+        run: |
+          echo "🖼️ Screenshots:"
+          ls -al Reports/screenshots || echo "⚠️ screenshots/ folder not found"
 
+      
       - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
